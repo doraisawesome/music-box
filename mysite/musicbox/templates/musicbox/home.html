@@ -1,0 +1,38 @@
+<<<<<<< HEAD
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Home</title>
+	<link rel="stylesheet" title="home" href="{% static 'musicbox/style3.css' %}" />
+</head>
+<body>
+	<h1>Cloud 6 Music Center</h1>
+	<p>Now playing: Like A Dog Chasing Cars. --The Dark Knight.</p>
+	<audio controls autoplay>
+		<source src="/media/music/Like_A_Dog_Chasing_Cars.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	<div id="header">
+		<ul id="menu">
+			<li><a href="{% url 'musicbox:home' %}">Home</a></li>
+			<li class="current"><a href="{% url 'musicbox:genre' %}">Genre</a></li>
+			<li><a href="{% url 'musicbox:upload' %}">Upload</a></li>
+			<li><a href="{% url 'musicbox:about' %}">About</a></li>
+		</ul>
+	</div>
+</body>
+</html>
+=======
+<h1>MusicBox</h1>
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+>>>>>>> 4156a491604122356ac49354964973d60747688b

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Genre Details{% endblock %}
+{% block content %}
+
+  <h2>{{ contact.genre_name }}</h2>
+  <p><b>Genre Type:</b> {{ contact.genre_type }}</p>
+
+  {% if contact.notes %}
+  <p><b>Notes:</b> {{ contact.notes }}</p>
+  {% endif %}
+  <p><b>Created:</b> {{ contact.creation_date|date:"D, m/d/Y" }}</p>
+
+  <p><a href="{% url "edit-contact" contact.id %}">Edit Genre Information</a></p>
+  <p><a href="{% url "delete-contact" contact.id %}">Delete Genre</a></p>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		{% load staticfiles %}
+		<meta charset="utf-8">
+		<title>Cloud 6 Music Center</title>
+		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script src="../static/musicbox/scripts/application.js"></script>
+		<link rel="stylesheet" title="home" href="../static/musicbox/scripts/style.css" />
+	
+	</head>
+
+	<body class="background">
+		<div id="image"><img src="../static/musicbox/images/music_wallpaper.jpg" alt=""></div>
+		<h1>Welcome to Cloud 6 Music Center</h1>
+		<p>Get all the music that you want!</p>
+		<select id="pages">
+			<option value="/home.html">Home Page</option>
+			<option value="/signIn.html">Sign In Page</option>
+		</select>
+		<div class="buttonHolder">
+			<button id="logIn" >Sign In</button>
+			<p>Not a member?</p>	
+			<button id="signUp">Create an account</button>
+		</div>
+		
+	</body>
+</html>

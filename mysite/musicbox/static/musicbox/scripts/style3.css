@@ -1,0 +1,40 @@
+#header{
+	float:left;
+	width: 100%;	
+	line-height: normal;
+	background: #DAE0D2 url("h_bg_1.gif") repeat-x bottom;
+}
+
+#menu ul{
+	margin: 0;
+	padding: 10px 10px 0;;
+	list-style: none;
+	
+}
+
+#menu li{
+	float: left;
+	background: url("norm_right.gif") no-repeat right top;
+	margin: 0;
+	padding: 0 0 0 1px;
+}
+
+#menu a{
+	display: block;
+	background: url("norm_left.gif") no-repeat left top;
+	padding: 5px 15px 4px 15px;
+	text-decoration: none;
+	font-weight: bold;	
+}
+
+#menu  li.current {
+	background-image: url("norm_right_on.gif");	
+}
+
+#menu li.current a{
+	background-image: url("norm_left_on.gif");
+	padding-bottom: 5px;
+}
+
+
+/* http://alistapart.com/article/slidingdoors */

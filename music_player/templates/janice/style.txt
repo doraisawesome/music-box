@@ -1,0 +1,11 @@
+head{
+	font-weight: bold;
+	
+
+}
+
+body{
+	background-image: url("ID-100172055.jpg") no-repeat right top;
+
+
+}
