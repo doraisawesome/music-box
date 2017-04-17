@@ -1,16 +1,66 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
-	<head>		
-		<meta charset="utf-8">
-		<title>Create Account</title>
-		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-		<script src="../static/musicbox/scripts/application.js"></script>
-		<link rel="stylesheet" title="home" href="../static/musicbox/scripts/style.css" />
-	
-	</head>
+<head>
+	<meta charset="utf-8">
+	<title>Register</title>
+	<link rel="stylesheet" title="rating" href="{% static 'musicbox/scripts/style3.css' %}" />
+	<link href="{% static 'musicbox/scripts/agency.css' %}" rel="stylesheet">
+	<link href="{% static 'musicbox/scripts/bootstrap.min.css' %}" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="{% static 'musicbox/scripts/application.js' %}"></script>
+</head>
 <body>
-<h1>Sign Up Here</h1>
+<div id='sitetitle'>
+	<span class='siteheader'>
+		<h1>Cloud 6 Music Center</h1>
+	</span>
+</div>
+		<div id="signUp" class="container">
+		<p>Register Here!</p>
+		
+		<form action="{% url 'musicbox:signup'  %}" method="post" enctype="multipart/form-data">
+
+		{% csrf_token %}
+	    	{{ form.non_field_errors }}
+	   	 {% for field in form %}
+		<div class="field_container">
+		    {{ field.errors }}
+		    {{ field.label_tag }} </br>
+		    {{ field }}
+		</div>
+	    {% endfor %}
+	 	<a href="{% url 'musicbox:signin' %}"><input type="submit" value="Submit" /></a>
+		<a href="{% url 'musicbox:index' %}"><input type="button" value="Cancel" /></a>
+	 	 </form>
+	</div>
+	    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Your Website 2014</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li>
+                        </li>
+                        <li>
+                        </li>
+                        <li>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Privacy Policy</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
-

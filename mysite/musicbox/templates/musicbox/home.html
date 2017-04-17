@@ -1,38 +1,141 @@
-<<<<<<< HEAD
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Home</title>
-	<link rel="stylesheet" title="home" href="{% static 'musicbox/style3.css' %}" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Rating</title>
+	<link rel="stylesheet" title="rating" href="{% static 'musicbox/scripts/style3.css' %}" />
+	<link href="{% static 'musicbox/scripts/agency.css' %}" rel="stylesheet">
+	<link href="{% static 'musicbox/scripts/bootstrap.min.css' %}" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="{% static 'musicbox/scripts/application.js' %}"></script>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 </head>
 <body>
-	<h1>Cloud 6 Music Center</h1>
-	<p>Now playing: Like A Dog Chasing Cars. --The Dark Knight.</p>
-	<audio controls autoplay>
-		<source src="/media/music/Like_A_Dog_Chasing_Cars.mp3" type="audio/mpeg">
-		Your browser does not support the audio element.
-	</audio>
-	<div id="header">
-		<ul id="menu">
-			<li><a href="{% url 'musicbox:home' %}">Home</a></li>
-			<li class="current"><a href="{% url 'musicbox:genre' %}">Genre</a></li>
-			<li><a href="{% url 'musicbox:upload' %}">Upload</a></li>
-			<li><a href="{% url 'musicbox:about' %}">About</a></li>
-		</ul>
+<div id='sitetitle'>
+	<span class='siteheader'>
+		<h1>Cloud 6 Music Center</h1>
+		<h6 id="right"><a href="{% url 'musicbox:index' %}">Logout</a></h6>
+	</span>
+</div>
+
+<div id="header">
+	<ul id="menu">
+		<li class='active'><a href="{% url 'musicbox:home' %}">Home</a></li>
+		<li class="current"><a href="{% url 'musicbox:genre' %}">Genre</a></li>
+		<li><a href="{% url 'musicbox:upload' %}">Upload</a></li>
+		<li><a href="{% url 'musicbox:rating' %}">Rating</a></li>
+		<li class='last'><a href="{% url 'musicbox:about' %}">About</a></li>
+	</ul>
+</div>
+<div id="messages">
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+</div>	
+
+<div class="container">
+  <br>
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img src="{% static 'musicbox/images/welcom.jpg' %}" alt="Welcom" width="1291" height="400">
+      </div>
+
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+
+	<div id="billboard" class="container">
+		<table id="recommandlist">
+			<thead>
+				<tr>
+					<th>Recommand for You</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% if recommand_list %}
+					{% for music in recommand_list %}
+						<tr>
+							<td>{{ forloop.counter }}. <a href="{% url 'musicbox:songDetails' music.id %}">{{ music.title }}</a></td>
+						</tr>
+					{% endfor %}
+				{% else %}
+						<tr><td>There is no any music yet. You can go to UPLOAD and upload your own music. </td></tr>
+				{% endif%}
+			</tbody>
+		</table>
+		<table id="newlist">
+			<thead>
+				<tr>
+					<th>New Songs</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% if new_list %}
+					{% for music in new_list %}
+						<tr>
+							<td>{{ forloop.counter }}. <a href="{% url 'musicbox:songDetails' music.id %}">{{ music.title }}</a></td>
+						</tr>
+					{% endfor %}
+				{% else %}
+						<tr><td>There is no any music yet. You can go to UPLOAD and upload your own music. </td></tr>
+				{% endif%}
+			</tbody>
+		</table>
+
 	</div>
+	    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Your Website 2014</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li>
+                        </li>
+                        <li>
+                        </li>
+                        <li>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Privacy Policy</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>
-=======
-<h1>MusicBox</h1>
-{% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
->>>>>>> 4156a491604122356ac49354964973d60747688b

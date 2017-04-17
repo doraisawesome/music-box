@@ -1,0 +1,60 @@
+#image{
+	position: fixed;
+	top: -50%;
+	left: -50%;
+	width: 200%;
+	height: 166%;
+
+}
+#image img {	
+	background-repeat: no-repeat;
+	position: absolute;
+	left: 0;
+	top: 0;
+	right:0;
+	bottom: 0;
+	min-height: 50%;
+	min-width: 50%;
+	margin: auto;
+/*	width: 100%;
+	height: auto;
+	opacity: 0.8;	*/
+}
+h1{
+	font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+	color: #25221d;
+	text-align: center;	
+	position: relative;
+	margin-top: 100px;
+	font-weight: bold;
+	font-size: 2.5em;
+	margin-bottom: 0;
+}
+#loginHolder{
+	position: relative;	
+	float: right;
+	padding-right: 2em;
+}
+#loginHolder ul{	
+	margin-top: -1em;		
+}
+#loginHolder ul li{	
+	display: inline;	
+}
+#loginHolder ul li a{		
+	padding: 0.5em;				
+	text-decoration: none;	
+}
+
+#loginHolder ul li input{	
+	font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;	
+	color: #837666;
+	font-weight: bold;			
+}
+#loginHolder ul li input:hover{	
+	color: #25221d;
+}
+
+/*#bcaa92 gold
+ grey*/
+

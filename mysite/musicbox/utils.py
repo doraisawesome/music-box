@@ -9,7 +9,7 @@ def get_file_upload_path(instance, filename):
     ext = filename.split('.')[-1]
     original_filename = filename.replace('.'+ext, '')
 
-    return os.path.join('files/', "%s.%s" % (slugify(original_filename), ext.lower())) 
+    return os.path.join('files/', "%s.%s" % (slugify(original_filename), ext.lower()))
 
 def get_cover_upload_path(instance, filename):
     return ''

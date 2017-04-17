@@ -21,10 +21,4 @@ from django.conf.urls.static import static
 urlpatterns = patterns('',
 	url(r'^musicbox/', include('musicbox.urls', namespace = "musicbox")),
     url(r'^admin/', include(admin.site.urls)),
-<<<<<<< HEAD
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-=======
-    
-]
-
->>>>>>> 4156a491604122356ac49354964973d60747688b

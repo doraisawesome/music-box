@@ -1,74 +1,128 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, get_list_or_404, render, redirect
+from django.http import HttpResponseRedirect, HttpResponse
+from django.core.urlresolvers import reverse
+from django.db.models import fields
+from django.contrib import messages
 
-<<<<<<< HEAD
-from .models import Music
+from musicbox.models import Users, Music, Song, Genre
+from musicbox.forms import UsersForm, SigninForm, SongForm, RatingForm
+
+def home(request):
+    recommand_list = Song.objects.filter(rating__gte=3)  
+    new_list = Song.objects.filter(play_count=0)
+    return render(request,'musicbox/home.html', {
+        'new_list':new_list,
+        'recommand_list': recommand_list
+        })
 
 def index(request):
 	return render(request,'musicbox/index.html')
 
-def home(request):
-	return render(request,'musicbox/home.html')
-
 def signup(request):
-	return render(request,'musicbox/signup.html')
+    if request.method == 'POST':
+        form = UsersForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Sign up successful!')
+            return redirect(reverse('musicbox:signin'))
+    else:
+        form = UsersForm()
+
+    return render(request,'musicbox/signup.html',{'form': form})
 	
+def signin(request):
+    if request.method == 'POST':
+        form = SigninForm(request.POST)
+        if form.is_valid():
+            useremail = request.POST['email']
+            userpassword = request.POST['password']
+            try:
+                targetuser = Users.objects.filter(email = useremail)
+                try:
+                    user = Users.objects.get(email = useremail, password = userpassword)
+                    messages.success(request, 'Welcome ' + user.name_first + " " + user.name_last + " !")
+                    return redirect(reverse('musicbox:home'))
+                except:
+                    messages.error(request, 'Error: Invalid pasword!')
+                    return redirect(reverse('musicbox:signin'))
+            except Users.DoesNotExist:
+                messages.error(request, 'Error: Invalid email!')
+                return redirect(reverse('musicbox:signin'))
+
+
+            # return redirect(reverse('musicbox:index'))
+    else:
+        form = SigninForm()
+
+        # userlist = Users.objects.order_by('name_last')
+    return render(request,'musicbox/signin.html',{'form': form})
+        # return redirect(reverse('musicbox:home'))
+
+def ratingList(request):
+    recommand_list = Song.objects.all()
+    rated_list = Song.objects.exclude(overall_rating=0)#[:10]
+    no_rating = Song.objects.filter(overall_rating=0)
+
+    return render(request,'musicbox/rating.html', {
+        'rated_list': rated_list,
+        'no_rating':no_rating,
+        'recommand_list': recommand_list,
+        })
+
+def songDetails(request, song_id):
+    song = get_object_or_404(Song, pk=song_id)
+    if request.method == 'POST':
+        form = RatingForm(request.POST or None, instance=song)
+        oldrate = song.overall_rating
+        if form.is_valid():
+            song.sumitted_count += 1
+            form.save()
+            song.total_rating = song.rating+song.total_rating
+            song.overall_rating = song.total_rating//song.sumitted_count
+            form.save()
+            return redirect(reverse('musicbox:songDetails', args=(song_id)))
+    else:
+        form = RatingForm(instance=song)
+        song.play_count +=1
+        song.save()
+    return render(request, 'musicbox/songDetails.html', {
+        'songdetails': song,
+        'form': form
+        })
+
 def about(request):
 	return render(request,'musicbox/about.html')
-	
-#def genre(request):
-#	return render(request,'musicbox/genre.html')
-	
+
 def upload(request):
-	return render(request,'musicbox/upload.html')
-	
-	
-# Need to change the namings, etc. of the following many lines of code. Made by Fan originally.
-from django.shortcuts import get_object_or_404, render, redirect
-from musicbox.models import Phonebook
-from musicbox.forms import PhonebookForm
+	if request.method == 'POST':
+		form = SongForm(request.POST, request.FILES)
+		if form.is_valid():
+			form.save()
+			messages.success(request, 'Upload successful!')
+			return redirect(reverse('musicbox:upload'))
+	else:
+		form = SongForm()
+	return render(request, 'musicbox/upload.html', {'form': form})
 
 
 def genre(request):
-    contacts = Phonebook.objects.all()
-    return render(request, 'musicbox/genre.html')
+    genre_list = Genre.objects.all()
+    return render(request, 'musicbox/genre.html', {'genre_list':genre_list})
 
-def contact_detail(request, contact_id):
-    contact = get_object_or_404(Phonebook, pk=contact_id)
-    return render(request, 'musicbox/contact_detail.html', {'contact': contact})
+def songsofgenre(request, genre_id):
+    songsofgenre_list = Song.objects.filter(genre__pk=genre_id)
+    genre = Genre.objects.get(pk=genre_id)
+    genre_list = Genre.objects.all()
+    #songsofgenre_list = Song.objects.filter(genre=genre_id)
+    return render(request, 'musicbox/songsofgenre.html', {
+        'songsofgenre_list': songsofgenre_list,
+        'genre': genre,
+        'genre_list': genre_list
+        })
 
-def create_contact(request):
-    if request.method == 'POST':
-        form = PhonebookForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('contact-list')
-    else:
-        form = PhonebookForm()
-    return render(request, 'musicbox/create_contact.html', {'form': form})
 
-def edit_contact(request, contact_id):
-    contact = get_object_or_404(Phonebook, pk=contact_id)
-    if request.method == 'POST':
-        form = PhonebookForm(request.POST, instance=contact)
-        if form.is_valid():
-            form.save()
-            return redirect('contact-detail', contact_id)
-    else:
-        form = PhonebookForm(instance=contact)
-    return render(request, 'musicbox/edit_contact.html', {'form': form})
+def billboard(request):
+    chart = billboard.ChartData('hot-100')
 
-    
-def delete_contact(request, contact_id):
-    contact = get_object_or_404(Phonebook, pk=contact_id)
-    if request.method == 'POST':
-        contact.delete()
-        return redirect('/musicbox/')
-    return render(request, 'musicbox/delete_contact.html', {'contact': contact})
-=======
-# Create your views here.
-from .models import Song
+    return render(request, 'musicbox/home.html',{'chart': chart})
 
-def home(request):
-	recommand_list = Song.objects.all()  # later will change the list according to rating
-	return render(request,'musicbox/home.html',{'recommand_list':recommand_list})
->>>>>>> 4156a491604122356ac49354964973d60747688b

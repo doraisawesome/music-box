@@ -1,0 +1,201 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Rating</title>
+	<link rel="stylesheet" title="rating" href="{% static 'musicbox/scripts/style3.css' %}" />
+	<link href="{% static 'musicbox/scripts/agency.css' %}" rel="stylesheet">
+	<link href="{% static 'musicbox/scripts/bootstrap.min.css' %}" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="{% static 'musicbox/scripts/application.js' %}"></script>
+</head>
+<body>
+<div id='sitetitle'>
+	<span class='siteheader'>
+		<h1>Cloud 6 Music Center</h1>
+	</span>
+</div>
+
+<div id="header">
+	<ul id="menu">
+		<li><a href="{% url 'musicbox:home' %}">Home</a></li>
+		<li class="current"><a href="{% url 'musicbox:genre' %}">Genre</a></li>
+		<li><a href="{% url 'musicbox:upload' %}">Upload</a></li>
+		<li class='active'><a href="{% url 'musicbox:rating' %}">Rating</a></li>
+		<li class='last'><a href="{% url 'musicbox:about' %}">About</a></li>
+	</ul>
+</div>
+<div class="container">
+	<h1>Already Rated</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Rating</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% if rated_list %}
+			    {% for music in rated_list %}
+				    <tr>
+				    	<td><a href="{% url 'musicbox:songDetails' music.id %}">{{ music.title }}</a></td>
+				    	<td>
+				    	  {% if music.overall_rating == 5 %}
+					      <form action="" class="starRating" method="post">
+					      	{% csrf_token %}
+						    <input id='rating5-{{ forloop.counter }}' type="radio" name="rating" value="5" checked>
+						    <label for='rating5-{{ forloop.counter }}'>5</label>
+					        <input id='rating4-{{ forloop.counter }}' type="radio" name="rating" value="4">
+					        <label for='rating4-{{ forloop.counter }}'>4</label>
+					        <input id="rating3-{{ forloop.counter }}" type="radio" name="rating" value="3">
+					        <label for='rating3-{{ forloop.counter }}'>3</label>
+					        <input id="rating2-{{ forloop.counter }}" type="radio" name="rating" value="2">
+					        <label for='rating2-{{ forloop.counter }}'>2</label>
+					        <input id="rating1-{{ forloop.counter }}" type="radio" name="rating" value="1">
+					        <label for='rating1-{{ forloop.counter }}'>1</label>
+					        <input type="submit" name="submit" value="Submit">
+					      </form>
+					      {% endif %}
+					      {% if music.overall_rating == 4 %}
+					      <form action="" class="starRating" method="post">
+					      	{% csrf_token %}
+						    <input id='rating5-{{ forloop.counter }}' type="radio" name="rating" value="5">
+						    <label for='rating5-{{ forloop.counter }}'>5</label>
+					        <input id='rating4-{{ forloop.counter }}' type="radio" name="rating" value="4" checked>
+					        <label for='rating4-{{ forloop.counter }}'>4</label>
+					        <input id="rating3-{{ forloop.counter }}" type="radio" name="rating" value="3">
+					        <label for='rating3-{{ forloop.counter }}'>3</label>
+					        <input id="rating2-{{ forloop.counter }}" type="radio" name="rating" value="2">
+					        <label for='rating2-{{ forloop.counter }}'>2</label>
+					        <input id="rating1-{{ forloop.counter }}" type="radio" name="rating" value="1">
+					        <label for='rating1-{{ forloop.counter }}'>1</label>
+					        <input type="submit" name="submit" value="Submit">
+					      </form>
+					      {% endif %}
+						  {% if music.overall_rating == 3 %}
+					      <form action="" class="starRating" method="post">
+					      	{% csrf_token %}
+						    <input id='rating5-{{ forloop.counter }}' type="radio" name="rating" value="5">
+						    <label for='rating5-{{ forloop.counter }}'>5</label>
+					        <input id='rating4-{{ forloop.counter }}' type="radio" name="rating" value="4">
+					        <label for='rating4-{{ forloop.counter }}'>4</label>
+					        <input id="rating3-{{ forloop.counter }}" type="radio" name="rating" value="3" checked>
+					        <label for='rating3-{{ forloop.counter }}'>3</label>
+					        <input id="rating2-{{ forloop.counter }}" type="radio" name="rating" value="2">
+					        <label for='rating2-{{ forloop.counter }}'>2</label>
+					        <input id="rating1-{{ forloop.counter }}" type="radio" name="rating" value="1">
+					        <label for='rating1-{{ forloop.counter }}'>1</label>
+					        <input type="submit" name="submit" value="Submit">
+					      </form>
+					      {% endif %}
+					      {% if music.overall_rating == 2 %}
+					      <form action="" class="starRating" method="post">
+					      	{% csrf_token %}
+						    <input id='rating5-{{ forloop.counter }}' type="radio" name="rating" value="5">
+						    <label for='rating5-{{ forloop.counter }}'>5</label>
+					        <input id='rating4-{{ forloop.counter }}' type="radio" name="rating" value="4">
+					        <label for='rating4-{{ forloop.counter }}'>4</label>
+					        <input id="rating3-{{ forloop.counter }}" type="radio" name="rating" value="3">
+					        <label for='rating3-{{ forloop.counter }}'>3</label>
+					        <input id="rating2-{{ forloop.counter }}" type="radio" name="rating" value="2" checked>
+					        <label for='rating2-{{ forloop.counter }}'>2</label>
+					        <input id="rating1-{{ forloop.counter }}" type="radio" name="rating" value="1">
+					        <label for='rating1-{{ forloop.counter }}'>1</label>
+					        <input type="submit" name="submit" value="Submit">
+					      </form>
+					      {% endif %}
+					      {% if music.overall_rating == 1 %}
+					      <form action="" class="starRating" method="post">
+					      	{% csrf_token %}
+						    <input id='rating5-{{ forloop.counter }}' type="radio" name="rating" value="5">
+						    <label for='rating5-{{ forloop.counter }}'>5</label>
+					        <input id='rating4-{{ forloop.counter }}' type="radio" name="rating" value="4">
+					        <label for='rating4-{{ forloop.counter }}'>4</label>
+					        <input id="rating3-{{ forloop.counter }}" type="radio" name="rating" value="3">
+					        <label for='rating3-{{ forloop.counter }}'>3</label>
+					        <input id="rating2-{{ forloop.counter }}" type="radio" name="rating" value="2">
+					        <label for='rating2-{{ forloop.counter }}'>2</label>
+					        <input id="rating1-{{ forloop.counter }}" type="radio" name="rating" value="1" checked>
+					        <label for='rating1-{{ forloop.counter }}'>1</label>
+					        <input type="submit" name="submit" value="Submit">
+					      </form>
+					      {% endif %}
+				    	</td>
+				    </tr>
+				{% endfor %}	
+			{% else %}
+			    <tr><td>There is no any music yet. You can go to UPLOAD and upload your own music. </td></tr>
+			{% endif %}
+		</tbody>
+	</table>
+	<h1>Wait to Be Rated</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Rating</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% if no_rating %}  
+			    {% for no_rating_music in no_rating %}
+				    <tr>
+				    	<td><a href="{% url 'musicbox:songDetails' no_rating_music.id %}">{{ no_rating_music.title }}</a></td>
+				    	<td>
+					      <form action="" class="starRating" method="post">
+					      	{% csrf_token %}
+						    <input id='rating5-{{ forloop.counter }}' type="radio" name="rating" value="5">
+						    <label for='rating5-{{ forloop.counter }}'>5</label>
+					        <input id='rating4-{{ forloop.counter }}' type="radio" name="rating" value="4">
+					        <label for='rating4-{{ forloop.counter }}'>4</label>
+					        <input id="rating3-{{ forloop.counter }}" type="radio" name="rating" value="3">
+					        <label for='rating3-{{ forloop.counter }}'>3</label>
+					        <input id="rating2-{{ forloop.counter }}" type="radio" name="rating" value="2">
+					        <label for='rating2-{{ forloop.counter }}'>2</label>
+					        <input id="rating1-{{ forloop.counter }}" type="radio" name="rating" value="1">
+					        <label for='rating1-{{ forloop.counter }}'>1</label>
+					        <input type="submit" name="submit" value="Submit">
+					      </form>
+				    	</td>
+				    </tr>
+				{% endfor %}
+			{% else %}
+			    <tr><td>There is no any music yet. You can go to UPLOAD and upload your own music. </td></tr>
+			{% endif %}
+		</tbody>
+	</table>
+</div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Your Website 2014</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li>
+                        </li>
+                        <li>
+                        </li>
+                        <li>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Privacy Policy</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
+<!--Receipe found in http://www.epicurious.com/recipes/food/views/classic-omelette-15068-->

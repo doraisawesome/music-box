@@ -1,1 +1,71 @@
-<h2>About</h2>
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>About Us</title>
+		<link rel="stylesheet" title="rating" href="{% static 'musicbox/scripts/style3.css' %}" />
+		<link href="{% static 'musicbox/scripts/agency.css' %}" rel="stylesheet">
+		<link href="{% static 'musicbox/scripts/bootstrap.min.css' %}" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script src="{% static 'musicbox/scripts/application.js' %}"></script>
+	</head>
+	<body>
+		<div id='sitetitle'>
+			<span class='siteheader'>
+				<h1>Cloud 6 Music Center</h1>
+			</span>
+		</div>
+
+		<div id="header">
+			<ul id="menu">
+				<li><a href="{% url 'musicbox:home' %}">Home</a></li>
+				<li class="current"><a href="{% url 'musicbox:genre' %}">Genre</a></li>
+				<li><a href="{% url 'musicbox:upload' %}">Upload</a></li>
+				<li><a href="{% url 'musicbox:rating' %}">Rating</a></li>
+				<li class='active'><a href="{% url 'musicbox:about' %}">About</a></li>
+			</ul>
+		</div>
+		<div id="box">
+			<div id="about">About us</div>
+			<div class="content">			
+				<p id="2nd">Cloud 6 is the premier destination for indie music artists to connect with the rest of 
+				   the world. We offer<br> a free platform for downloading and uploading songs, and are dedicated to helping 
+				   up-and-coming artists <br>be discovered!</p>
+				<p id="3rd">Cloud 6 was established in September 2015 by a team of six 
+				   hard-working individuals: Fan Liu, Collin Qiao, <br>Janice Sargent, Zhi Chen, Wen Du, and Yuchen Tang. We
+				   take great pride in our website, and are even <br>prouder of people who use it.
+				</p>
+			</div>
+		</div>
+		    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Your Website 2014</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li>
+                        </li>
+                        <li>
+                        </li>
+                        <li>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Privacy Policy</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+	</body>
+</html>
+

@@ -1,0 +1,180 @@
+[
+  {
+    "model": "musicbox.genre",
+    "pk": 1,
+    "fields": {
+      "genre_name": "Blues"
+    }
+  },
+  {
+    "model": "musicbox.genre",
+    "pk": 2,
+    "fields": {
+      "genre_name": "Country"
+    }
+  },
+  {
+    "model": "musicbox.genre",
+    "pk": 3,
+    "fields": {
+      "genre_name": "Hip Hop / Rap"
+    }
+  },
+  {
+    "model": "musicbox.genre",
+    "pk": 4,
+    "fields": {
+      "genre_name": "Jazz"
+    }
+  },
+  {
+    "model": "musicbox.genre",
+    "pk": 5,
+    "fields": {
+      "genre_name": "Dance"
+    }
+  },
+  {
+    "model": "musicbox.genre",
+    "pk": 6,
+    "fields": {
+      "genre_name": "Electronic"
+    }
+  },
+  {
+    "model": "musicbox.genre",
+    "pk": 7,
+    "fields": {
+      "genre_name": "Instrumental"
+    }
+  },
+  {
+    "model": "musicbox.genre",
+    "pk": 8,
+    "fields": {
+      "genre_name": "R&B / Soul"
+    }
+  },
+  {
+    "model": "musicbox.genre",
+    "pk": 9,
+    "fields": {
+      "genre_name": "Pop"
+    }
+  },
+  {
+    "model": "musicbox.genre",
+    "pk": 10,
+    "fields": {
+      "genre_name": "Rock"
+    }
+  },
+  {
+    "model": "musicbox.users",
+    "pk": 1,
+    "fields": {
+      "name_first": "Laura",
+      "name_last": "Dern",
+      "password": "123456789",
+      "repassword": "123456789",
+      "email": "ld@sfu.ca",
+      "phone_number": "111-111-1111"
+    }
+  },
+  {
+    "model": "musicbox.users",
+    "pk": 2,
+    "fields": {
+      "name_first": "Sam",
+      "name_last": "Neill",
+      "password": "123456789",
+      "repassword": "123456789",
+      "email": "sn@sfu.ca",
+      "phone_number": "222-222-2222"
+    }
+  },
+  {
+    "model": "musicbox.users",
+    "pk": 3,
+    "fields": {
+      "name_first": "Jeff",
+      "name_last": "Goldblum",
+      "password": "123456789",
+      "repassword": "123456789",
+      "email": "jg@sfu.ca",
+      "phone_number": "333-333-3333"
+    }
+  },
+  {
+    "model": "musicbox.users",
+    "pk": 4,
+    "fields": {
+      "name_first": "Bob",
+      "name_last": "Peck",
+      "password": "123456789",
+      "repassword": "123456789",
+      "email": "bp@sfu.ca",
+      "phone_number": "444-444-4444"
+    }
+  },
+  {
+    "model": "musicbox.users",
+    "pk": 5,
+    "fields": {
+      "name_first": "Martin",
+      "name_last": "Ferrero",
+      "password": "123456789",
+      "repassword": "123456789",
+      "email": "mf@sfu.ca",
+      "phone_number": "555-555-5555"
+    }
+  },
+  {
+    "model": "musicbox.users",
+    "pk": 6,
+    "fields": {
+      "name_first": "BD",
+      "name_last": "Wong",
+      "password": "123456789",
+      "repassword": "123456789",
+      "email": "bw@sfu.ca",
+      "phone_number": "666-666-6666"
+    }
+  },
+  {
+    "model": "musicbox.song",
+    "pk": 1,
+    "fields": {
+      "title": "why so serious",
+      "artist": "Wong",
+      "genre": 7,
+      "year": "1979",
+      "publisher": "someone",
+      "rating": "0",
+	  "overall_rating": "0",
+      "total_rating": "0",
+	  "sumitted_count": "0",
+      "play_count": "0",
+	  "added_date":"2009-10-25 14:30",
+	  "file": "music/Why_So_Serious.mp3"
+   }
+  },
+  {
+    "model": "musicbox.song",
+    "pk": 2,
+    "fields": {
+      "title": "Mombassa",
+      "artist": "someone else",
+      "genre": 6,
+      "year": "2010",
+      "publisher": "someone else",
+      "rating": "0",
+	  "overall_rating": "0",
+      "total_rating": "0",
+	  "sumitted_count": "0",
+      "play_count": "0",
+	  "added_date":"2011-08-07 07:30",
+	  "file": "music/07._Mombassa.mp3"
+	}
+  }
+]

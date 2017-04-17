@@ -1,0 +1,91 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Rating</title>
+	<link rel="stylesheet" title="rating" href="{% static 'musicbox/scripts/style3.css' %}" />
+	<link href="{% static 'musicbox/scripts/agency.css' %}" rel="stylesheet">
+	<link href="{% static 'musicbox/scripts/bootstrap.min.css' %}" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="{% static 'musicbox/scripts/application.js' %}"></script>
+
+</head>
+<body>
+<div id='sitetitle'>
+	<span class='siteheader'>
+		<h1>Cloud 6 Music Center</h1>
+	</span>
+</div>
+
+<div id="header">
+	<ul id="menu">
+		<li><a href="{% url 'musicbox:home' %}">Home</a></li>
+		<li class="current"><a href="{% url 'musicbox:genre' %}">Genre</a></li>
+		<li><a href="{% url 'musicbox:upload' %}">Upload</a></li>
+		<li class='active'><a href="{% url 'musicbox:rating' %}">Rating</a></li>
+		<li class='last'><a href="{% url 'musicbox:about' %}">About</a></li>
+	</ul>
+</div>
+<div id = "song_controller">
+	{% if songdetails %}
+	<audio controls autoplay>
+		<source src={{songdetails.file.url}} type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	{% endif %}
+</div>
+<h2 id="songtitle">{{ songdetails.title }}</h2> 
+<div class="section">
+		<div class="container">
+			<table>
+				<tbody>
+					<tr><td>Artist: {{ songdetails.artist }}</td></tr>
+					<tr><td>Added Date: {{ songdetails.added_date }}</td></tr>
+					<tr><td>Listened: {{ songdetails.play_count }}</td></tr>
+					<tr><td>Your Rate: <form action="" method="post" enctype="multipart/form-data">
+							{% csrf_token %}
+							{% for radio in form.rating %}
+								{{ radio }}
+							{% endfor %}
+							<input type="submit" name="submit" value="Submit" />
+							<a href="{% url 'musicbox:rating' %}"></a>
+						</form></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+</div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Your Website 2014</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li>
+                        </li>
+                        <li>
+                        </li>
+                        <li>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Privacy Policy</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>

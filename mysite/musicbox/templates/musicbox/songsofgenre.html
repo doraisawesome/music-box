@@ -1,0 +1,95 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Rating</title>
+    <link rel="stylesheet" title="rating" href="{% static 'musicbox/scripts/style3.css' %}" />
+    <link href="{% static 'musicbox/scripts/agency.css' %}" rel="stylesheet">
+    <link href="{% static 'musicbox/scripts/bootstrap.min.css' %}" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="{% static 'musicbox/scripts/application.js' %}"></script>
+</head>
+
+<body>
+<div id='sitetitle'>
+    <span class='siteheader'>
+        <h1>Cloud 6 Music Center</h1>
+    </span>
+</div>
+<div id="header">
+    <ul id="menu">
+        <li><a href="{% url 'musicbox:home' %}">Home</a></li>
+        <li class='active'><a href="{% url 'musicbox:genre' %}">Genre</a></li>
+        <li><a href="{% url 'musicbox:upload' %}">Upload</a></li>
+        <li><a href="{% url 'musicbox:rating' %}">Rating</a></li>
+        <li class='last'><a href="{% url 'musicbox:about' %}">About</a></li>
+    </ul>
+</div>
+<div class="container"><h1>Genres</h1></div>
+<div class="gcontainer">
+    <div class="col-sm-2">
+        <nav class="nav-sidebar">
+        {% if genre_list %}
+            <ul id="tab1">
+            {% for genre in genre_list %}
+                <li><a data-toggle="tab" href="{% url 'musicbox:songsofgenre' genre.id %}" >{{ genre }}</a></li>
+            {% endfor %}
+            </ul>
+        {% endif %}    
+        </nav>
+    </div>
+</div>
+<!-- tab content -->
+<div class="tab-content">
+<div class="tab-pane active text-style" id="tab1">
+  <h2>{{ genre }}</h2>
+    <!-- new -->
+        <div class="container">
+        <table id="recommandlist">
+            <tbody>
+                {% if songsofgenre_list %}
+                    {% for music in songsofgenre_list %}
+                        <tr>
+                            <td>{{ forloop.counter }}. <a href="{% url 'musicbox:songDetails' music.id %}">{{ music.title }}</a></td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                        <tr><td>There is no any music yet. You can go to UPLOAD and upload your own music. </td></tr>
+                {% endif%}
+            <hr>
+            </tbody>
+        </table>
+</div>
+</div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Your Website 2014</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li>
+                        </li>
+                        <li>
+                        </li>
+                        <li>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Privacy Policy</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>

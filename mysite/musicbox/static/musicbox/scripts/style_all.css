@@ -1,0 +1,137 @@
+body{
+	background-color:OldLace;
+}
+#image img{	
+	width: 300px;
+	height: auto;
+	float: left;
+	padding-left: 5px;
+	padding-top:5px;
+	margin-bottom: 20px;
+}
+#title{
+	position: relative;
+	margin-top: 10px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.6em;
+	padding-top: 10px;	
+	color: Tomato;
+}
+#search{
+	float: right;	
+	border: 2px solid Sienna;	
+	padding: 5px 5px 5px 5px;
+	font-size: 1em;
+	color: Tomato;
+	font-weight: bold;
+}
+#search  input{
+	font-size: 1.2em;
+	
+	
+}
+
+#header{
+	float:left;
+	position: relative;
+	width: 100%;
+	line-height: normal;
+	background-color: #bcaa92;
+	
+}
+#header ul{
+	margin: 0;	
+	list-style-type: none;
+}
+
+#header ul li{
+	float: left;	
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left:15px;
+	padding-right:15px;
+	
+}
+#header li a{
+	display: inline;
+	
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 1.3em;
+	color: DarkDrab;
+}
+#header ul li a:hover{	
+	background-color:OldLace;
+}
+p{	
+	margin-top: 180px;
+	text-align: center;
+	color: Sienna;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+#signUp {
+	
+	margin-top: 100px;
+	text-align: center;
+	border: 2px solid Sienna;	
+	width: 300px;
+	height: auto;
+	
+	
+	
+}
+
+
+#signUp form{
+	display: inline;
+	color: Sienna;
+	padding-left: 600 px;
+
+}
+#top10{
+	float: left;
+	position: relative;
+	margin-top: 40px;
+}
+#top10 p{
+	
+	font-weight: bold;
+	font-size: 1.5em;
+	color: Sienna;	
+	padding-left: 5em;
+	
+}
+#top10 ol{
+	padding-left: 8em;
+	padding-top: 1em;
+	
+	font-size: 1.1em;
+	color: Teal;
+}
+
+#topDownload{
+	float: right;
+	position: relative;
+	margin-top: 40px;
+	margin-right: 30px;
+}
+#topDownload p{
+	
+	padding-right: 0.45em;
+	font-size: 1.5em;
+	color: Sienna;
+	font-weight: bold;
+}
+#topDownload ol{
+	padding-right: 8em;
+	padding-top: 1em;
+	
+	font-size: 1.1em;
+	color: Teal;
+	
+	
+}
+
+/* http://alistapart.com/article/slidingdoors */
